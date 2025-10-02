@@ -1,6 +1,7 @@
 import requests
 import os
 import csv
+import time
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -18,10 +19,10 @@ for ticker in data['results']:
     tickers.append(ticker)
 
 while 'next_url' in data:
-    print('requesting next page', data['next_url'])
+    time.sleep(12)
+    print('requesting next page')
     response = requests.get(data['next_url'] + f'&apiKey={POLYGON_API_KEY}')
     data = response.json()
-    print(data)
     for ticker in data['results']:
         tickers.append(ticker)
 
